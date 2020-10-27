@@ -4,6 +4,7 @@ namespace App\Commands;
 
 use Illuminate\Console\Scheduling\Schedule;
 use LaravelZero\Framework\Commands\Command;
+use Illuminate\Support\Facades\Http;
 
 class AppCommand extends Command
 {
@@ -12,14 +13,14 @@ class AppCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'Read';
+    protected $signature = 'Open';
 
     /**
      * The description of the command.
      *
      * @var string
      */
-    protected $description = 'Read latest Techpoint headlines right from your terminal -by Adams Paul';
+    protected $description = 'Read latest Techpoint headlines right from your terminal';
 
     /**
      * Execute the console command.
@@ -28,26 +29,15 @@ class AppCommand extends Command
      */
     public function handle()
     {
-        $rss_url = 'https://techpoint.ng/rss';
-        $api_endpoint = 'https://api.rss2json.com/v1/api.json?rss_url=';
-
-        $data = json_decode( file_get_contents($api_endpoint . urlencode($rss_url)) , true );
+        $url = 'https://api.rss2json.com/v1/api.json?rss_url=https://techpoint.ng/rss';
+        $data = Http::get($url);
         // Parses the response and build a table.
         $this->info("Hello Techie! Trending In Tech:");
-        $bar = $this->output->createProgressBar(count($data['items']));
-
-        foreach ($data['items'] as $item) {
-            $this->newLine();
-            echo "{$item['title']}";
-            $this->newLine();
-
+        $response = json_decode($data);
+        foreach ($response->items as $item) {
+            echo "{$item->title} by {$item->author}\n - ({$item->link}) ";
+            $this->newLine(2);
         }
-        $headers = ['Name', 'Email'];
-
-        $users = App\Models\User::all(['name', 'email'])->toArray();
-
-        $this->table($headers, $users);
-
         // Notify the user on the Operating System that the weather arrived.
         $this->notify('News Alert!', 'Techpoint News just arrived!', 'icon.png');
     }
