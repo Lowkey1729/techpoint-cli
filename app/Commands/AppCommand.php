@@ -13,14 +13,14 @@ class AppCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'Open';
+    protected $signature = 'Read';
 
     /**
      * The description of the command.
      *
      * @var string
      */
-    protected $description = 'Read latest Techpoint headlines right from your terminal';
+    protected $description = 'See Latest headlines';
 
     /**
      * Execute the console command.
