@@ -1,6 +1,6 @@
 {
     "name": "zeevx/techpoint-cli",
-    "description": "Read latest Techpoint headlines right from your terminal.",
+    "description": "Read all the latest Techpoint headlines right from your terminal.",
     "keywords": ["framework", "laravel", "techpoint", "console", "cli"],
     "homepage": "https://techpoint.ng",
     "type": "project",
