@@ -42,6 +42,9 @@ return [
 
     'env' => 'production',
 
+    'production' => true,
+
+
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers
