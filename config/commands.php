@@ -28,6 +28,10 @@ return [
 
     'paths' => [app_path('Commands')],
 
+
+
+    'production' => true,
+
     /*
     |--------------------------------------------------------------------------
     | Added Commands
