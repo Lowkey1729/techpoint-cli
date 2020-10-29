@@ -42,7 +42,6 @@ return [
 
     'env' => 'production',
 
-    'production' => true,
 
 
     /*
